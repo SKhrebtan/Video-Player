@@ -1,0 +1,20 @@
+.form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.label {
+  margin-right: 20px;
+}
+
+.input {
+  height: 30px;
+  width: 200px;
+}
+
+.button {
+  border-color: transparent;
+  border-radius: 10px;
+  width: 80px;
+}

@@ -1,0 +1,8 @@
+.mainDiv {
+  margin: 0 auto;
+  width: calc(100vw - 40%);
+}
+
+.title {
+  text-align: center;
+}
