@@ -1,44 +1,51 @@
 import css from './reactplayer.module.css';
 import ReactPlayer from 'react-player/youtube';
-import { useState, useEffect } from 'react';
-function useLocalStorage(key, defaultValue) {
-  const [state, setState] = useState(() => JSON.parse(window.localStorage.getItem(key)) ?? defaultValue)
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { errorVideo } from 'redux/reducer/currentVideoReducer';
+// function useLocalStorage(key, defaultValue) {
+//   const [state, setState] = useState(() => JSON.parse(window.localStorage.getItem(key)) ?? defaultValue)
   
-  useEffect(() => {
-    return window.localStorage.setItem(key, JSON.stringify(state))
-  }, [state, key])
-return [state, setState]
-}
+//   useEffect(() => {
+//     return window.localStorage.setItem(key, JSON.stringify(state))
+//   }, [state, key])
+// return [state, setState]
+// }
+// const [video, setVideo] = useLocalStorage('video', 'https://www.youtube.com/watch?v=_fhDVVfELsM&t=1387s');
+//  useEffect(() => {
+//     if (!formValue) return;
+//     setVideo(formValue)
+//  }, [formValue, setVideo])
+  
 export const OnlineReactPlayer = ({ formValue }) => {
-  const [video, setVideo] = useLocalStorage('video', 'https://www.youtube.com/watch?v=_fhDVVfELsM&t=1387s');
-  const [videoError, setVideoError] = useState(null);
+  
+  const dispatch = useDispatch();
+   const currentVideo = useSelector(state => state.video);
+
     const playerConfig = {
     youtubePlayerVars: {
       origin: 'https://www.youtube.com',
     },
   };
-  const handleError = (error) => {
-    console.log(error);
-    console.log(error.message)
-    setVideoError(error)
-  }
   useEffect(() => {
-    if (!formValue) return;
-    setVideo(formValue)
-  }, [formValue,setVideo])
+      if (currentVideo && !ReactPlayer.canPlay(currentVideo.url)) {
+      dispatch(errorVideo(false))
+      } else (dispatch(errorVideo(true)))
+  },[currentVideo, dispatch])
+
   return (
     <div className={css.playerWrapper}>
-      {videoError && <div>Виникла помилка під час відтворення відео.</div>}
-      <ReactPlayer
+      {!ReactPlayer.canPlay(currentVideo.url) && <div>Виникла помилка під час відтворення відео.</div>}
+      {ReactPlayer.canPlay(currentVideo.url) && <ReactPlayer
         playing={true}
         className={css.reactPlayer}
-        url={formValue ?? video}
+        url={currentVideo.url ?? formValue}
         controls
         config={playerConfig}
-        onError={()=>handleError}
-        width='100%'
-        height='640px'
-      />
+       
+         width='240px'
+        height='180px'
+      />}
     </div>
   )
 

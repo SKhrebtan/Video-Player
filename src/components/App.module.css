@@ -1,6 +1,9 @@
 .mainDiv {
   margin: 0 auto;
   width: calc(100vw - 40%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .title {
