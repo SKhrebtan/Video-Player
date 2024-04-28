@@ -1,21 +1,31 @@
-import css from './form.module.css'
 import { useDispatch } from 'react-redux';
 import { updateVideo } from 'redux/reducer/currentVideoReducer';
 export const Form = ({ onSubmit }) => {
-      const dispatch = useDispatch();
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // onSubmit(e.target.elements.video.value)
-        dispatch(updateVideo(e.target.elements.video.value))
-        e.target.reset()
-    }
+  const dispatch = useDispatch();
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(updateVideo(e.target.elements.video.value));
+    e.target.reset();
+  };
 
-    return (
-        <form className={css.form}  onSubmit={handleSubmit}>
-            <label className={css.label}  name='video'>
-                <input className={css.input} name='video' type='text'/>
-            </label>
-            <button className={css.button} type='submit'>Load</button>
-        </form>
-    )
-}
+  return (
+    <form
+      className="max-w-[720px] flex gap-[20px] justify-between"
+      onSubmit={handleSubmit}
+    >
+      <label className="border-1 border-blue-100 grow" name="video">
+        <input
+          className="text-xl border-[2px] border-blue-300 p-[10px] w-full focus:outline-green-500"
+          name="video"
+          type="text"
+        />
+      </label>
+      <button
+        className="rounded-md bg-blue-200 border-[1px] border-blue-500 p-[10px] w-[100px] hover:border-transparent hover:bg-blue-500 hover:text-white transition-all duration-300"
+        type="submit"
+      >
+        Load
+      </button>
+    </form>
+  );
+};
