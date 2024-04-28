@@ -15,7 +15,7 @@ export const App = () => {
     setFormValue(value);
   };
   return (
-    <div className="flex flex-col mx-auto max-w-[720px] gap-[20px] py-10">
+    <div className="flex flex-col mx-auto max-w-[720px] gap-[20px] p-10">
       <h1 className={css.title}>Online Video Player</h1>
       <Form onSubmit={handleFormValue} />
       <OnlineReactPlayer formValue={formValue} />
