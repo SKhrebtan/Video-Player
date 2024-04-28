@@ -13,6 +13,10 @@ export const DeleteModal = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          onClick={e => {
+            if (e.currentTarget !== e.target) return;
+            handleCloseModal();
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

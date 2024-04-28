@@ -3,8 +3,9 @@ module.exports = {
   content: ['./src/index.js', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
+      mobile: '450px',
       desktop: '786px',
-      laptop: '1144px'
+      laptop: '1144px',
     },
     components: {
       button:

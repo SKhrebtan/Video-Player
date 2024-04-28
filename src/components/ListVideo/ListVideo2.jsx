@@ -63,11 +63,13 @@ export const ListVideo = () => {
   }, [normalizedFilter, items]);
 
   const btnStyles =
-    'w-[104px] rounded-md bg-blue-200 border-[1px] border-blue-500 p-[10px] w-[100px] hover:border-transparent hover:bg-blue-500 hover:text-white transition-all duration-300';
+    'w-[104px] rounded-md bg-blue-200 border-[1px] border-blue-500 p-[10px] w-[60px] mobile:w-[100px] hover:border-transparent hover:bg-blue-500 hover:text-white transition-all duration-300';
   const btnActiveStyles =
+    'w-[104px] rounded-md bg-green-200 border-[1px] border-green-500 p-[10px] w-[60px] mobile:w-[100px] hover:border-transparent hover:bg-green-500 hover:text-white transition-all duration-300';
+  const btnActiveStyles2 =
     'w-[104px] rounded-md bg-green-200 border-[1px] border-green-500 p-[10px] w-[100px] hover:border-transparent hover:bg-green-500 hover:text-white transition-all duration-300';
   const btnDeleteStyles =
-    'w-[104px] rounded-md bg-red-200 border-[1px] border-red-500 p-[10px] w-[100px] hover:border-transparent hover:bg-red-500 hover:text-white transition-all duration-300';
+    'w-[104px] rounded-md bg-red-200 border-[1px] border-red-500 p-[10px] w-[60px] mobile:w-[100px] hover:border-transparent hover:bg-red-500 hover:text-white transition-all duration-300';
 
   const handleDragStart = useCallback(event => {
     console.log(event.active.id);
@@ -82,7 +84,7 @@ export const ListVideo = () => {
           filteredVideos => filteredVideos.id === active.id
         );
         const newIndex = filteredVideos.findIndex(
-          filteredVideos => filteredVideos.id === over.id
+          filteredVideos => filteredVideos.id === over?.id
         );
         const updatedVideos = arrayMove(filteredVideos, oldIndex, newIndex);
         console.log(updatedVideos);
@@ -101,9 +103,9 @@ export const ListVideo = () => {
   return (
     <>
       <button
-        className={
-          Array.isArray(currentVideo.url) ? btnActiveStyles : btnStyles
-        }
+        className={`${
+          Array.isArray(currentVideo.url) ? btnActiveStyles2 : btnStyles
+        } w-[100px]`}
         type="button"
         onClick={() => dispatch(updateVideo(playList))}
       >

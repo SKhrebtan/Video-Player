@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,15 @@ export const useModal = () => {
     setIsOpen(true);
     document.body.style.overflow = 'hidden';
   };
+
+  useEffect(() => {
+    const handleKeyPress = e => {
+      if (e.code !== 'Escape') return;
+      handleCloseModal();
+    };
+    document.body.addEventListener('keydown', handleKeyPress);
+    return () => document.body.removeEventListener('keydown', handleKeyPress);
+  }, []);
   return {
     isOpen,
     handleCloseModal,
