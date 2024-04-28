@@ -115,7 +115,7 @@ export const ListVideo = () => {
             items={filteredVideos}
             strategy={verticalListSortingStrategy}
           >
-            <ul className="flex flex-col gap-[10px]">
+            <ul className="flex flex-col gap-[10px] overflow-hidden p-[5px]">
               {filteredVideos.map((item, index) => (
                 <InView key={item.id}>
                   {({ ref, inView }) => (

@@ -7,12 +7,18 @@ export const FormVideoAdd = () => {
   const videos = useSelector(state => state.videoList);
 
   const handleSubmit = e => {
+    console.log(e.target.elements.name.value);
     e.preventDefault();
     const newVideo = {
       id: nanoid(),
       name: e.target.elements.name.value,
       url: currentVideo.url,
     };
+    console.log(
+      videos.items.find(
+        video => video.url === newVideo.url || video.name === newVideo.name
+      )
+    );
     if (
       videos.items.find(
         video => video.url === newVideo.url || video.name === newVideo.name

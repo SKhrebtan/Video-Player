@@ -19,7 +19,7 @@ export const App = () => {
       <h1 className={css.title}>Online Video Player</h1>
       <Form onSubmit={handleFormValue} />
       <OnlineReactPlayer formValue={formValue} />
-      {videoError && <FormVideoAdd />}
+      {!videoError && <FormVideoAdd />}
       {items.length > 0 && <FilterList />}
       <ListVideo />
     </div>

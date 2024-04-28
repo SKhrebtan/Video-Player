@@ -16,7 +16,7 @@ const Item = forwardRef(
   ) => {
     const inlineStyles = {
       opacity: withOpacity ? '0.5' : '1',
-      height: '46px',
+      height: '56px',
       transformOrigin: '50% 50%',
       borderRadius: '10px',
       cursor: isDragging ? 'grabbing' : 'grab',
@@ -33,7 +33,13 @@ const Item = forwardRef(
     };
 
     return (
-      <li ref={ref} style={inlineStyles} {...attributes} {...listeners}>
+      <li
+        ref={ref}
+        style={inlineStyles}
+        {...attributes}
+        {...listeners}
+        className="p-[5px]"
+      >
         {children}
       </li>
     );
