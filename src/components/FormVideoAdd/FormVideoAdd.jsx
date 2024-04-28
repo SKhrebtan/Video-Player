@@ -27,7 +27,8 @@ export const FormVideoAdd = () => {
     e.target.reset();
   };
   return (
-    !newUrl && (
+    !newUrl &&
+    currentVideo.new && (
       <form
         className="max-w-[720px] flex gap-[20px] justify-between"
         onSubmit={handleSubmit}
