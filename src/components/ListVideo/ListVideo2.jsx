@@ -30,9 +30,15 @@ export const ListVideo = () => {
   const [activeId, setActiveId] = useState(null);
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      activationConstraint: { distance: 2 },
+      activationConstraint: { distance: 1 },
     }),
-    useSensor(TouchSensor)
+    useSensor(TouchSensor, {
+      // Press delay of 250ms, with tolerance of 5px of movement
+      activationConstraint: {
+        delay: 250,
+        tolerance: 10,
+      },
+    })
   );
   const { isOpen, handleCloseModal, handleOpenModal } = useModal();
   const [id, setId] = useState(null);

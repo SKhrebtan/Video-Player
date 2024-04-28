@@ -13,6 +13,7 @@ const SortableItem = ({ id, children, laptop }) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition: transition || undefined,
+    touchAction: 'none',
   };
   return (
     <Item
