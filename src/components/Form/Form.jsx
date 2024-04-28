@@ -10,7 +10,7 @@ export const Form = ({ onSubmit }) => {
 
   return (
     <form
-      className="max-w-[720px] flex gap-[20px] justify-between"
+      className="max-w-[720px] flex gap-[20px] justify-between laptop:max-w-[1100px]"
       onSubmit={handleSubmit}
     >
       <label className="border-1 border-blue-100 grow" name="video">

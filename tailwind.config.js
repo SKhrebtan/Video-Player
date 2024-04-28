@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     screens: {
       desktop: '786px',
+      laptop: '1144px'
     },
     components: {
       button:

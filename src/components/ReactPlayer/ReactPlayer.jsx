@@ -25,7 +25,7 @@ export const OnlineReactPlayer = ({ formValue }) => {
   }, [currentVideo, playList, dispatch]);
 
   return (
-    <div className="max-w-[720px] h-[480px]">
+    <div className="max-w-[720px] h-[480px] laptop:max-w-[1100px] laptop:h-[600px]">
       {!ReactPlayer.canPlay(currentVideo.url || playList) && (
         <div>Виникла помилка під час відтворення відео.</div>
       )}
