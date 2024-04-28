@@ -51,6 +51,7 @@ const videosInitialState = {
     'https://www.youtube.com/watch?v=z0vCwGUZe1I',
   ],
   error: null,
+  new: false,
 };
 
 const currentVideoSlice = createSlice({
@@ -59,13 +60,20 @@ const currentVideoSlice = createSlice({
   reducers: {
     updateVideo(state, action) {
       state.url = action.payload;
+      state.new = false;
     },
     errorVideo(state, action) {
       state.error = action.payload;
     },
+    loadNewVideo(state, action) {
+      console.log(action);
+      state.url = action.payload;
+      state.new = true;
+    },
   },
 });
 
-export const { updateVideo, errorVideo } = currentVideoSlice.actions;
+export const { updateVideo, errorVideo, loadNewVideo } =
+  currentVideoSlice.actions;
 
 export const currentVideoReducer = currentVideoSlice.reducer;

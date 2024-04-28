@@ -6,6 +6,8 @@ export const FormVideoAdd = () => {
   const currentVideo = useSelector(state => state.video);
   const videos = useSelector(state => state.videoList);
 
+  const newUrl = videos.items.some(item => item.url === currentVideo.url);
+  console.log(newUrl);
   const handleSubmit = e => {
     console.log(e.target.elements.name.value);
     e.preventDefault();
@@ -14,11 +16,6 @@ export const FormVideoAdd = () => {
       name: e.target.elements.name.value,
       url: currentVideo.url,
     };
-    console.log(
-      videos.items.find(
-        video => video.url === newVideo.url || video.name === newVideo.name
-      )
-    );
     if (
       videos.items.find(
         video => video.url === newVideo.url || video.name === newVideo.name
@@ -30,24 +27,26 @@ export const FormVideoAdd = () => {
     e.target.reset();
   };
   return (
-    <form
-      className="max-w-[720px] flex gap-[20px] justify-between"
-      onSubmit={handleSubmit}
-    >
-      <label className="border-1 border-blue-100 grow">
-        <input
-          placeholder="Type name"
-          className="text-xl border-[2px] border-blue-300 p-[10px] w-full focus:outline-green-500"
-          type="text"
-          name="name"
-        />
-      </label>
-      <button
-        className="rounded-md bg-blue-200 border-[1px] border-blue-500 p-[10px] w-[100px] hover:border-transparent hover:bg-blue-500 hover:text-white transition-all duration-300"
-        type="submit"
+    !newUrl && (
+      <form
+        className="max-w-[720px] flex gap-[20px] justify-between"
+        onSubmit={handleSubmit}
       >
-        Додати
-      </button>
-    </form>
+        <label className="border-1 border-blue-100 grow">
+          <input
+            placeholder="Type name"
+            className="text-xl border-[2px] border-blue-300 p-[10px] w-full focus:outline-green-500"
+            type="text"
+            name="name"
+          />
+        </label>
+        <button
+          className="rounded-md bg-blue-200 border-[1px] border-blue-500 p-[10px] w-[100px] hover:border-transparent hover:bg-blue-500 hover:text-white transition-all duration-300"
+          type="submit"
+        >
+          Додати
+        </button>
+      </form>
+    )
   );
 };

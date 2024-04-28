@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { updateVideo } from 'redux/reducer/currentVideoReducer';
+import { loadNewVideo } from 'redux/reducer/currentVideoReducer';
 export const Form = ({ onSubmit }) => {
   const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(updateVideo(e.target.elements.video.value));
+    dispatch(loadNewVideo(e.target.elements.video.value));
     e.target.reset();
   };
 
