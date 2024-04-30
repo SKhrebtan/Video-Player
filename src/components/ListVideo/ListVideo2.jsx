@@ -33,7 +33,6 @@ export const ListVideo = () => {
       activationConstraint: { distance: 1 },
     }),
     useSensor(TouchSensor, {
-      // Press delay of 250ms, with tolerance of 5px of movement
       activationConstraint: {
         delay: 250,
         tolerance: 10,
@@ -79,7 +78,6 @@ export const ListVideo = () => {
     event => {
       const { active, over } = event;
       if (active.id !== over?.id) {
-        console.log(active);
         const oldIndex = filteredVideos.findIndex(
           filteredVideos => filteredVideos.id === active.id
         );
@@ -87,7 +85,6 @@ export const ListVideo = () => {
           filteredVideos => filteredVideos.id === over?.id
         );
         const updatedVideos = arrayMove(filteredVideos, oldIndex, newIndex);
-        console.log(updatedVideos);
         setFilteredVideos(updatedVideos);
         dispatch(updateVideoList(updatedVideos));
       }
@@ -123,7 +120,7 @@ export const ListVideo = () => {
             items={filteredVideos}
             strategy={verticalListSortingStrategy}
           >
-            <ul className="flex flex-col gap-[10px] overflow-hidden p-[5px]">
+            <ul className="flex flex-col gap-[10px] p-[5px] overflow-hidden">
               {filteredVideos.map((item, index) => (
                 <InView key={item.id}>
                   {({ ref, inView }) => (
